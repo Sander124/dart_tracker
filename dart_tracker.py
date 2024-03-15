@@ -23,6 +23,7 @@ st.markdown(
 """
 )
 df = pd.DataFrame(list(collection.find()))
+df = df.drop('_id',axis=1)
 df['hit'] = df['single'] + df['triple'] + df['double']
 c1,c2,c3 = st.columns(3)
 c1.metric("Total sessions", len(df))
