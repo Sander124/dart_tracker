@@ -23,13 +23,22 @@ st.markdown(
 """
 )
 df = pd.DataFrame(list(collection.find()))
+df['hit'] = df['single'] + df['triple'] + df['double']
 c1,c2,c3 = st.columns(3)
 c1.metric("Total sessions", len(df))
 c2.metric("Highest score", df['score'].max())
 c3.metric('Average score', df['score'].mean())
 
-st.line_chart(df[['session', 'score']], x='session', y='score')
-st.line_chart(df[['session', 'percentage']], x='session', y='percentage')
+d1,d2 = st.columns(2)
+
+
+d1.line_chart(df[['session', 'score']], x='session', y='score')
+d2.line_chart(df[['session', 'percentage']], x='session', y='percentage')
+
+st.line_chart(df[['session', 'single', 'double', 'triple', 'hit']], x='session', y=['single', 'double', 'triple','hit'])
+
+with st.expander('Show data'):
+    st.dataframe(df)
 
 
 with st.expander("Add new session"):
