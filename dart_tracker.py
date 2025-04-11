@@ -7,8 +7,7 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-client = MongoClient("mongodb+srv://sandersteur2:rJDCcg502peL5JS6@clustersander.yzcdzii.mongodb.net/?tls=true")
-
+client = MongoClient("
 db = client['dart_tracker']
 collection = db['dart_tracker']
 
